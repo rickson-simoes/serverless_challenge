@@ -16,12 +16,15 @@ export const handle: APIGatewayProxyHandler = async event => {
 
   const todo_id = UUID();
 
+  const done = false;
+
   await document.put({ 
     TableName: 'users_todos', 
     Item: { 
       id: todo_id, 
       user_id: id, 
-      title, done: false, 
+      title, 
+      done, 
       deadline: new Date(deadline) } 
   }).promise();
 
@@ -33,7 +36,7 @@ export const handle: APIGatewayProxyHandler = async event => {
         id: todo_id, 
         user_id: id, 
         title, 
-        done: false, 
+        done, 
         deadline 
       }
     }),
